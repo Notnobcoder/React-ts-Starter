@@ -1,14 +1,67 @@
-import AuthLayout from "../../layout/auth"
+import { Link } from "react-router-dom"
+import { FieldValues, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { AppSchema } from "../../schema"
+import Input from "../../components/input"
+import { onRegister } from "../../apiClient/post"
 
 export const Register = () => {
-  const firstBody = (
+  const { register, handleSubmit, formState: { errors, isLoading } } = useForm<FieldValues>({
+    resolver: zodResolver(AppSchema.registerSchema)
+  })
+
+  return (
     <div>
-      <h4>Register</h4>
-      <input placeholder="hello world" />
+      <h4 className="text-3xl">Register</h4>
+      <form onSubmit={handleSubmit(onRegister)}>
+        <Input
+          id="email"
+          label="Enter Email"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+
+        <Input
+          id="firstName"
+          label="Enter First Name"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+
+        <Input
+          id="lastName"
+          label="Enter Last Name"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+
+        <Input
+          id="password"
+          label="Enter Password"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+
+        {isLoading ? (
+          <h4>Loading ........</h4>
+        ) : (
+          <button type="submit">Submit</button>
+        )}
+      </form>
+      <div>
+        <p> Already have an account ?</p>
+        <Link to="/login" >Login here</Link>
+      </div>
     </div>
   )
-  return (
-    <AuthLayout firstBody={firstBody}>
-    </AuthLayout>
-  )
 }
+
+
