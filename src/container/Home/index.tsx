@@ -5,7 +5,7 @@ import { CardDetails } from "../../types";
 import { LoadingLayout } from "../../layout/loadingLayout";
 
 export const Home = () => {
-  const { data: products, isLoading } = useQuery<CardDetails[]>("fetchProducts", ApiClient.FetchProducts, { cacheTime: 5000 });
+  const { data: products, isLoading } = useQuery<CardDetails[]>("fetchProducts", ApiClient.FetchProducts, { staleTime: 5000 });
 
 
 

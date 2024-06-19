@@ -24,17 +24,8 @@ export const Register = () => {
         />
 
         <Input
-          id="firstName"
-          label="Enter First Name"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-
-        <Input
-          id="lastName"
-          label="Enter Last Name"
+          id="username"
+          label="Enter User Name"
           disabled={isLoading}
           register={register}
           errors={errors}

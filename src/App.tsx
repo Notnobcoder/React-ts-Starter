@@ -2,6 +2,8 @@ import { ScrollOnTop } from './components/scrollOnTop'
 import { Application } from './container/Application'
 import { MainLayout } from './layout/main'
 import { QueryClientProvider, QueryClient } from "react-query"
+import AuthProvider from './providers/AuthProvider';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const queryClient = new QueryClient({
@@ -14,11 +16,15 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <MainLayout>
-          <ScrollOnTop>
-            <Application />
-          </ScrollOnTop>
-        </MainLayout>
+        <BrowserRouter>
+          <AuthProvider>
+            <MainLayout>
+              <ScrollOnTop>
+                <Application />
+              </ScrollOnTop>
+            </MainLayout>
+          </AuthProvider>
+        </BrowserRouter>
       </QueryClientProvider>
     </>
   )

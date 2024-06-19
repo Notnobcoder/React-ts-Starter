@@ -3,6 +3,8 @@ import { CardDetails } from "../types";
 
 const ENDPOINT = "https://jsonplaceholder.typicode.com"
 
+const LocalENDPOINT = "http://localhost:8000"
+
 const fetchMyHotels = async (): Promise<CardDetails[]> => {
   const response = await fetch(`${ENDPOINT}/photos`, {
     credentials: "include",
@@ -24,8 +26,15 @@ const FetchProducts = async (): Promise<CardDetails[]> => {
   return response.data
 }
 
+export const validateToken = async () => {
+  const response = await axios.get(`${LocalENDPOINT}/auth/validate-token`);
 
 
-export const ApiClient = { fetchMyHotels, FetchProducts }
+  return response.data;
+};
+
+
+
+export const ApiClient = { fetchMyHotels, FetchProducts, validateToken }
 
 
